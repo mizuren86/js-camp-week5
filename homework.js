@@ -57,6 +57,7 @@ const orders = [
  */
 function getProductById(products, productId) {
   // 請實作此函式
+  return products.find(item => item.id === productId) || null;
 }
 
 /**
@@ -67,6 +68,10 @@ function getProductById(products, productId) {
  */
 function getProductsByCategory(products, category) {
   // 請實作此函式
+  if (category === '全部'){
+    return products;
+  }
+  return products.filter(item => item.category === category)
 }
 
 /**
@@ -77,6 +82,8 @@ function getProductsByCategory(products, category) {
  */
 function getDiscountRate(product) {
   // 請實作此函式
+  const rate = Math.round((product.price / products.origin_price) * 10) /10
+  return `{rate}折`
 }
 
 /**
@@ -86,6 +93,9 @@ function getDiscountRate(product) {
  */
 function getAllCategories(products) {
   // 請實作此函式
+  const allCats = products.map(item => item.category);
+  const allCatsSet = new Set(allCats);
+  return [... allCatsSet];
 }
 
 // ========================================
